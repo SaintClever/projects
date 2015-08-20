@@ -1,0 +1,17 @@
+<!-- you really dont need "{{renderPage}}" I think. The "layout" template is automatically rendered within the <body></body> tags -->
+<body>
+  {{renderPage}}
+</body>
+
+
+<template name="layout">
+  {{> navbar}} <!-- This requests the navbar, which is rendered by the body tag -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+      {{> yield}} <!-- After the router fetches the layout template the layout fetches the root "/". We currently have the "post" template as the root -->
+    </div>
+  </div>
+</div>
+</template>
