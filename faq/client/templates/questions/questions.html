@@ -1,0 +1,12 @@
+<template name="questions">
+  <ul class="accordion" data-accordion>
+    {{#each questions}}
+      <li class="accordion-navigation">
+        <a href="#panel-{{i}}">{{question}}</a> <!-- You just use the desired field name from the object schema and meteor will iterate through it -->
+        <div id="panel-{{i}}" class="content">
+          {{answer}} <!-- You just use the desired field name from the object schema and meteor will iterate through it -->
+        </div>
+      </li>
+    {{/each}}
+  </ul>
+</template>

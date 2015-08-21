@@ -1,0 +1,20 @@
+<body>
+  {{renderPage}}
+</body>
+
+<template name="layout">
+  {{> navbar}}
+
+  <div class="row faqs">
+    <div class="large-12 columns">
+      {{> yield}}
+    </div>
+  </div>
+
+  <script type="text/javascript">
+  // Because the Foundation Accordion is using JavaScript we have to initialize it to make it interactive
+    $(document).ready(function(){
+      $(document).foundation();
+    })
+  </script>
+</template>
