@@ -6,7 +6,7 @@ Template.add_product.events({
     var description = event.target.description.value;
     var is_featured = event.target.is_featured.value;
 
-    var file = $('#productImage').get(0).file[0];
+    var file = $('#productImage').get(0).files[0];
 
     if(file){
       fsFile = new FS.File(file);
