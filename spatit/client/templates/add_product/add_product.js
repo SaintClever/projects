@@ -8,36 +8,8 @@ Template.add_product.events({
 
     var file = $('#productImage').get(0).files[0];
 
-    if(file){
-      fsFile = new FS.File(file);
-
-      ProductsImages.insert(fsFile, function(err, result){
-        if(!err){
-          var productImage = '/cfs/files/ProductsImages/'+result._id;
-
-          Products.insert({
-            name: name,
-            category: category,
-            description: description,
-            is_featured: is_featured,
-            image: productImage,
-            createdAt: new Date()
-          });
-        }
-      });
-    } else {
-      var productImage = '/img/noimage.png';
-
-      Products.insert({
-        name: name,
-        category: category,
-        description: description,
-        is_featured: is_featured,
-        image: productImage,
-        createdAt: new Date()
-      });
-    }
-
+    Meteor.call('addProduct', file, name, category, description, is_featured);
+    
     // Clear form
     event.target.name.value = "";
     event.target.category.value = "";
