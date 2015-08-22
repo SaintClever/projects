@@ -12,7 +12,9 @@
           ({{getReviewsTotal reviews.length}})</p>
         <p>{{truncateText description 150}}</p>
         <a href="{{pathFor 'product'}}" class="btn btn-default">Read Reviews</a>
+        {{#if currentUser}}
         <a href="{{pathFor 'new_review'}}" class="btn btn-primary">Add Review</a>
+        {{/if}}
       </div>
 
     </div>

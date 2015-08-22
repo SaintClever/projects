@@ -14,16 +14,16 @@
     </div>
   </div>
 
-
-  <div class="row">
-    <div class="col-md-12">
-      <div class="text-right">
-        <a href="/new-review/{{_id}}" class="btn btn-success">Leave a Review</a>
+  {{#if currentUser}}
+    <div class="row">
+      <div class="col-md-12">
+        <div class="text-right">
+          <a href="/new-review/{{_id}}" class="btn btn-success">Leave a Review</a>
+        </div>
       </div>
     </div>
-  </div>
-
-  <hr>
+    <hr>
+  {{/if}}
   
   <h4>Reviews &amp; Ratings</h4>
   {{#each reviews}}

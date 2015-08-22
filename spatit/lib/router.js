@@ -2,6 +2,23 @@ Router.configure({
   layoutTemplate: "layout"
 });
 
+// If you're NOT logged-in you get redirected to the home page
+var OnBeforeActions = {
+  loginRequired: function(){
+    if(!Meteor.userId()){
+      Router.go('/')
+    } else {
+      this.next();
+    }
+  }
+}
+
+// If you're NOT logged-in you cannot access these pages
+Router.onBeforeAction(OnBeforeActions.loginRequired, {
+  only: ['add_product', 'new_review']
+});
+
+
 
 
 Router.map(function(){
