@@ -1,0 +1,30 @@
+.navbar {
+  margin: 25px 10px 35px 10px;
+  border: solid 1px #337AB7;
+/*  border-bottom: solid 1px #337AB7;
+  border-top: solid 1px #337AB7;*/
+}
+
+.jnfLogo00 {
+  margin: 25px 15px 10px 0;
+  padding: 0;
+}
+
+.jnfLogo01 {
+  margin: 50px 0 10px 0;
+  padding: 0;
+}
+
+.icon-bar {
+  background-color: #40BA55;
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+
+.backdrop {
+  border-radius: 5px;
+  padding: 9px;
+  background-color: #EDEEF0;
+}

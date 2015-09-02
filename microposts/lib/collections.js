@@ -52,4 +52,11 @@ Posts.allow({
   }
 });
 
-
+UserImages.allow({
+  insert: function(){
+    return true;
+  },
+  update: function(userId, doc, fields, modifier){
+    return true;
+  }
+});
