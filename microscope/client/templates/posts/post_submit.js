@@ -7,17 +7,24 @@ Template.postSubmit.events({
       title: $(e.target).find('[name=title]').val()
     };
 
+    var errors = validatePost(post);
+    if (errors.title || errors.url)
+      return Session.set('postSubmitErrors', errors);
+
     Meteor.call('postInsert', post, function(error, result){ // Name of method to call or invoke. An argument(as many as you DESIRE). Lastly an asyncCallback. Check posts.js for the Meteor.method we created called 'postInsert'
       // Display the error to the user and abort
       if (error)
-        return alert(error.reason);
+        // return alert(error.reason);
+        return throwError(error.reason);
 
       // show this result but route anyway
       if (result.postExists)
-        alert('This link has already been posted');
-    });
+        // alert('This link has already been posted');
+        throwError('This link has already been posted');
 
-    Router.go('postsList');
+
+    Router.go('postsList', {_id: result._id});
+    });
   }
 });
 
@@ -31,3 +38,15 @@ Meteor method callbacks always have two arguments, error and result. If for what
 /*
 The net result is the user hits submit, a post is created, and the user is instantly taken to the discussion page for that new post.
 */
+
+Template.postSubmit.onCreated(function() {
+  Session.set('postSubmitErrors', {});
+});
+Template.postSubmit.helpers({
+  errorMessage: function(field) {
+    return Session.get('postSubmitErrors')[field];
+  },
+  errorClass: function (field) {
+    return !!Session.get('postSubmitErrors')[field] ? 'has-error' : '';
+  }
+});
