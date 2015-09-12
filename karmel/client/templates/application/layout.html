@@ -1,0 +1,10 @@
+<!-- Layout displays everything -->
+<template name="layout">
+  <div class="container">
+    {{> header}}
+    {{> questionnaire}}
+    <div id="main">
+      {{> yield}}
+    </div>
+  </div>
+</template>
