@@ -3,7 +3,9 @@ Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',
   notFoundTemplate: 'notFound', // Displays a 404
-  waitOn: function() { return Meteor.subscribe('posts');}
+  waitOn: function() {
+    return [Meteor.subscribe('posts'), Meteor.subscribe('comments')];
+  }
 });
 
 

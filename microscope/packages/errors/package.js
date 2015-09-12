@@ -25,9 +25,12 @@ Package.onTest(function(api) {
   api.addFiles('errors-tests.js');
 });
 
-// Package.onTest(function(api) {
-//   api.use('saintclever:errors', 'client');
-//   api.use(['tinytest', 'test-helpers'], 'client');
+/* This is from Discover Meteor, however this is not needed because new versions of Meteor generates a tinytest Package.onTest
 
-//   api.addFiles('errors_tests.js', 'client');
-// });
+Package.onTest(function(api) {
+  api.use('saintclever:errors', 'client');
+  api.use(['tinytest', 'test-helpers'], 'client');
+
+  api.addFiles('errors_tests.js', 'client');
+});
+*/
