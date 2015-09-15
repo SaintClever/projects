@@ -8,6 +8,8 @@ Router.configure({
   }
 });
 
+// OUR pagination logic is hanlde within our route...PostsListController
+
 // Iron Router's: Route Controllers
 PostsListController = RouteController.extend({
   template: 'postsList',
@@ -18,15 +20,25 @@ PostsListController = RouteController.extend({
   findOptions: function() {
     return {sort: {submitted: -1}, limit: this.postsLimit()};
   },
-  waitOn: function() {
-    return Meteor.subscribe('posts', this.findOptions());
+  subscriptions: function() {
+    this.postsSub = Meteor.subscribe('posts', this.findOptions());
+  },
+  posts: function() {
+    return Posts.find({}, this.findOptions());
   },
   data: function() {
-    return {posts: Posts.find({}, this.findOptions())};
+    var hasMore = this.posts().count() === this.postsLimit();
+    var nextPath = this.route.path({postsLimit: this.postsLimit() + this.increment});
+    return {
+      posts: this.posts(),
+      ready: this.postsSub.ready,
+      nextPath: hasMore ? nextPath : null
+    };
   }
 });
 
 // This is used to display the entire list, hence postsList
+// postsList route (which will inherit from the PostsListController controller) takes a postsLimit parameter
 Router.route('/:postsLimit?', {
   name: 'postsList'
 });
