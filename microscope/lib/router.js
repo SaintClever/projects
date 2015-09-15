@@ -8,19 +8,27 @@ Router.configure({
   }
 });
 
-// This is used to display the entire list, hence postsList
-Router.route('/:postsLimit?', {
-  name: 'postsList',
+// Iron Router's: Route Controllers
+PostsListController = RouteController.extend({
+  template: 'postsList',
+  increment: 5,
+  postsLimit: function() {
+    return parseInt(this.params.postsLimit) || this.increment;
+  },
+  findOptions: function() {
+    return {sort: {submitted: -1}, limit: this.postsLimit()};
+  },
   waitOn: function() {
-    var limit = parseInt(this.params.postsLimit) || 5;
-    return Meteor.subscribe('posts', {sort: {submitted: -1}, limit: limit});
+    return Meteor.subscribe('posts', this.findOptions());
   },
   data: function() {
-    var limit = parseInt(this.params.postsLimit) || 5;
-    return {
-      posts: Posts.find({}, {sort: {submitted: -1}, limit: limit})
-    };
+    return {posts: Posts.find({}, this.findOptions())};
   }
+});
+
+// This is used to display the entire list, hence postsList
+Router.route('/:postsLimit?', {
+  name: 'postsList'
 });
 
 // This is for an idiviual ids or URL paths, hence /posts/:_id
