@@ -7,4 +7,8 @@ Template.postItem.helpers({
     a.href = this.url; // return the href tag with the entire URL
     return a.hostname; // return the hostname which has a href
   }
+  // ,
+  // commentsCount: function() {
+  //   return Comments.find({postId: this._id}).count();
+  // }
 });
