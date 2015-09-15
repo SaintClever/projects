@@ -3,9 +3,12 @@ Router.configure({
 });
 
 Router.map(function(){
-  // Login Home
+  // Login
   this.route('login', {
-    paht: '/',
+    path: '/',
     template: 'login'
   });
+
+  // Register
+  this.route('register');
 });
