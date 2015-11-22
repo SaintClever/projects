@@ -1,0 +1,34 @@
+<template name="love">
+  <div class="jumbotron">
+  <p class="lead">A series of questions will be presented, which will determine our strategy for success</p>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <p class="panel-title">
+          {{questionnaire.question}}
+        </p>
+      </div>
+      <div class="panel-body">
+        {{#with love}}
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt00}}</h4>
+          </label>
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt01}}</h4>
+          </label>
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt02}}</h4>
+          </label>
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt03}}</h4>
+          </label>
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt04}}</h4>
+          </label>
+          <label class="radio">
+            <input type="radio" name="radioOptions" id="inlineRadio1" value="option1"> <h4>{{questionnaire.opt05}}</h4>
+          </label>
+        {{/with}}
+      </div>
+    </div>
+  </div>
+</template>

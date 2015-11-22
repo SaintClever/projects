@@ -1,0 +1,15 @@
+<head>
+  <title>Leaderboard</title>
+</head>
+<body>
+  <h1>Leaderboard</h1>
+  {{> leaderboard}}
+</body>
+
+<template name="leaderboard">
+  <ul>
+    {{#each player}} <!--player is the function name-->
+      <li>{{name}} : {{score}}</li><!--name field from collection -->
+    {{/each}}
+  </ul>
+</template>

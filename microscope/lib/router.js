@@ -18,7 +18,7 @@ PostsListController = RouteController.extend({
     return parseInt(this.params.postsLimit) || this.increment;
   },
   findOptions: function() {
-    return {sort: {submitted: -1}, limit: this.postsLimit()};
+    return {sort: this.sort, limit: this.postsLimit()};
   },
   subscriptions: function() {
     this.postsSub = Meteor.subscribe('posts', this.findOptions());
@@ -32,16 +32,39 @@ PostsListController = RouteController.extend({
     return {
       posts: this.posts(),
       ready: this.postsSub.ready,
-      nextPath: hasMore ? nextPath : null
+      nextPath: hasMore ? this.nextPath() : null
     };
   }
 });
 
+NewPostsController = PostsListController.extend({
+  sort: {submitted: -1, _id: -1},
+  nextPath: function() {
+    return Router.routes.newPosts.path({postsLimit: this.postsLimit() + this.increment})
+  }
+});
+
+BestPostsController = PostsListController.extend({
+  sort: {votes: -1, submitted: -1, _id: -1},
+  nextPath: function() {
+    return Router.routes.bestPosts.path({postsLimit: this.postsLimit() + this.increment})
+  }
+});
+
++Router.route('/', {
+  name: 'home',
+  controller: NewPostsController
+});
+
+Router.route('/new/:postsLimit?', {name: 'newPosts'});
+
+Router.route('/best/:postsLimit?', {name: 'bestPosts'});
+
 // This is used to display the entire list, hence postsList
 // postsList route (which will inherit from the PostsListController controller) takes a postsLimit parameter
-Router.route('/:postsLimit?', {
-  name: 'postsList'
-});
+// Router.route('/:postsLimit?', {
+//   name: 'postsList'
+// });
 
 // This is for an idiviual ids or URL paths, hence /posts/:_id
 Router.route('/posts/:_id', {

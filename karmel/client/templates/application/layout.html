@@ -1,10 +1,14 @@
-<!-- Layout displays everything -->
 <template name="layout">
   <div class="container">
-    {{> header}}
-    {{> questionnaire}}
-    <div id="main">
-      {{> yield}}
+    <div class="row">
+      <div class="col-md-12">
+        {{> navbar}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        {{> yield}}
+      </div>
     </div>
   </div>
 </template>

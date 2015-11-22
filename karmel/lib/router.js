@@ -1,26 +1,15 @@
-// Everything gets pushed into these templates
 Router.configure({
-  layoutTemplate: 'layout',
-  // loadingTemplate: 'loading',
-  // notFoundTemplate: 'notFound' 
+  layoutTemplate: 'layout'
 });
 
-
-Router.map(function(){
-  // Home
-  this.route('/', {
-    path: '/',
-    template: 'layout'
-  });
-
+Router.route('/', function () {
+  this.render('home');
 });
 
+Router.route('/love');
 
-//or
+Router.route('/life');
 
-/*
-//Home
-this.route('/', function () {
-  this.layout('layout');
-});
-*/
+Router.route('/career');
+
+
