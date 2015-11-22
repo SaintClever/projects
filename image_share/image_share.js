@@ -26,6 +26,18 @@ if (Meteor.isClient) {
     Images.find({}, {sort:{createdOn: -1, rating: -1}})
   });
 
+  // used to display the currently logged in user
+  Template.body.helpers({username:function(){
+    if (Meteor.user()) {
+      return Meteor.user().emails[0].address;
+    } else {
+      return "anonymous internet user";
+    }
+    // console.log(Meteor.user().emails[0].address); // Meteor.user is a reactive data source. Its also the users specific account recognizer aka email address whenever you sign in
+    // return "dunno..who are you?";
+    }
+  });
+
   Template.images.events({
     'click .js-image':function(event){
       $(event.target).css("width", "50px");
